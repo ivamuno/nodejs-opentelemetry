@@ -10,6 +10,11 @@
    * [**zipkin:**](https://zipkin.io/) Local instance.
 2. GET http://localhost:3000 to run a request.
 3. Open http://localhost:9411 to check traces on zipkin.
-4. Open [elastic](https://cloud.elastic.co/home) to check trace there.
+
+![image](https://user-images.githubusercontent.com/24419905/113476410-abd9d480-947b-11eb-9c2e-f9d602e2b915.png)
+
+5. Open [elastic](https://cloud.elastic.co/home) to check trace there.
    * user: raziel_frex@hotmail.com
    * pass: Patata1234564789
+
+![image](https://user-images.githubusercontent.com/24419905/113476427-c449ef00-947b-11eb-80e4-88df30950314.png)

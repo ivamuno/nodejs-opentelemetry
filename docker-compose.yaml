@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  nodejs-opentelemetry-master:
+    container_name: nodejs-opentelemetry-master
+    build:
+      context: ./nodejs-opentelemetry-master
+      dockerfile: Dockerfile
+    image: nodejs-opentelemetry-master
+    command: "npm run start:debug"
+    volumes:
+      - ./nodejs-opentelemetry-master:/app
+    ports:
+      - 3000:3000
+    tty: true
+    networks:
+      - custom_network
+
+  nodejs-opentelemetry-slave:
+    container_name: nodejs-opentelemetry-slave
+    build:
+      context: ./nodejs-opentelemetry-slave
+      dockerfile: Dockerfile
+    image: nodejs-opentelemetry-slave
+    command: "npm run start:debug"
+    volumes:
+      - ./nodejs-opentelemetry-slave:/app
+    ports:
+      - 3001:3001
+    tty: true
+    networks:
+      - custom_network
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    command: ["--config=/conf/collector-config.yaml", "--log-level=DEBUG"]
+    volumes:
+      - ./collector-config.yaml:/conf/collector-config.yaml
+    ports:
+      - 9411 # Zipkin receiver
+    tty: true
+    networks:
+      - custom_network
+
+  zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: zipkin
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    external:
+      name: payvision

@@ -14,31 +14,31 @@ export class TracerProvider {
       /*new SimpleSpanProcessor(
         new ZipkinExporter({
           serviceName: 'nodejs-opentelemetry-master',
-          url: 'http://zipkin:9411/api/v2/spans'
-        }),
-      ),*/
-      new SimpleSpanProcessor(
-        new ZipkinExporter({
-          serviceName: 'nodejs-opentelemetry-master',
           url: 'http://otel-collector:9411'
         })
-      ),
-      /*new SimpleSpanProcessor(
+      ),*/
+      new SimpleSpanProcessor(
         new CollectorTraceExporter({
           serviceName: 'nodejs-opentelemetry-master',
-          url: 'http://localhost:55681/v1/trace'
-          // HTTP - http://localhost:55681/v1/trace
-          // gRPC - localhost:4317
-        }),
-        {
-          maxQueueSize: 2,
-          scheduledDelayMillis: 5000,
-        }
-      ),*/
+          url: 'http://otel-collector:55681/v1/traces'
+        })
+      ),
     );
-    
+
     registerInstrumentations({
-      tracerProvider: provider
+      tracerProvider: provider,
+      instrumentations: [{
+        plugins: {
+          express: {
+            enabled: true,
+          },
+          http: {
+            ignoreOutgoingUrls: [
+              (url: string) => url.includes('apm')
+            ],
+          }
+        },
+      }]
     });
 
     provider.register();

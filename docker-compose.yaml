@@ -57,7 +57,7 @@ services:
     volumes:
       - ./collector-config.yaml:/conf/collector-config.yaml
     ports:
-      - 9411 # Zipkin receiver
+      - 55681 # Http receiver
     tty: true
     networks:
       - custom_network

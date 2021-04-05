@@ -1,16 +1,15 @@
 receivers:
-  zipkin:
   otlp:
     protocols:
       http:
         cors_allowed_origins:
-        - http://*
-        - https://*
+          - http://*
+          - https://*
 
 exporters:
   elastic:
-    apm_server_url: 'https://93240c290a9c46d390e5cc7a6dcae9cb.apm.us-west1.gcp.cloud.es.io:443' 
-    secret_token: 'gwguK5uBRB927mgY2q'
+    apm_server_url: "https://93240c290a9c46d390e5cc7a6dcae9cb.apm.us-west1.gcp.cloud.es.io:443"
+    secret_token: "gwguK5uBRB927mgY2q"
   zipkin:
     endpoint: "http://zipkin:9411/api/v2/spans"
   jaeger:
@@ -23,8 +22,7 @@ processors:
 service:
   pipelines:
     traces:
-      receivers: 
-        - zipkin
+      receivers:
         - otlp
       exporters:
         - elastic

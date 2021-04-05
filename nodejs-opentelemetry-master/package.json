@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@elastic/ecs-winston-format": "^1.1.0",
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/platform-express": "^7.6.15",
@@ -41,7 +42,9 @@
     "elastic-apm-node-opentracing": "^2.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.6"
+    "rxjs": "^6.6.6",
+    "winston": "^3.3.3",
+    "winston-elasticsearch": "^0.15.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",

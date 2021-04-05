@@ -8,8 +8,8 @@ receivers:
 
 exporters:
   elastic:
-    apm_server_url: "https://93240c290a9c46d390e5cc7a6dcae9cb.apm.us-west1.gcp.cloud.es.io:443"
-    secret_token: "gwguK5uBRB927mgY2q"
+    apm_server_url: "http://apm-server:8200"
+    secret_token: ""
   zipkin:
     endpoint: "http://zipkin:9411/api/v2/spans"
   jaeger:

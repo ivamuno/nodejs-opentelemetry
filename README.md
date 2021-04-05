@@ -9,7 +9,7 @@
    * **nodejs-opentelemetry-slave:** Intermediary api.
    * **otel-collector:** Proxy to receive data from OpenTelemetry, and then, export to target system (zipkin and elastic).
    * [**zipkin:**](https://zipkin.io/) Local instance.
-   * [**jaeger**](https://www.jaegertracing.io/)
+   * [**jaeger**](https://www.jaegertracing.io/) Local instance.
 2. GET http://localhost:3000 to run a request.
 3. Open http://localhost:9411 to check traces on zipkin.
 

@@ -13,6 +13,9 @@ exporters:
     secret_token: 'gwguK5uBRB927mgY2q'
   zipkin:
     endpoint: "http://zipkin:9411/api/v2/spans"
+  jaeger:
+    endpoint: "jaeger:14250"
+    insecure: true
 
 processors:
   batch:
@@ -26,5 +29,6 @@ service:
       exporters:
         - elastic
         - zipkin
+        - jaeger
       processors:
         - batch

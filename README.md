@@ -8,10 +8,10 @@
    * **nodejs-opentelemetry-master:** Entry point (GET http://localhost:3000)
    * **nodejs-opentelemetry-slave:** Intermediary api.
    * **otel-collector:** Proxy to receive data from OpenTelemetry, and then, export to target system (zipkin and elastic).
-   * [**zipkin:**](https://zipkin.io/): Local instance.
+   * [**zipkin**](https://zipkin.io/): Local instance.
    * [**jaeger**](https://www.jaegertracing.io/): Local instance.
    * [**apm-server**](https://www.elastic.co/es/apm/): Local instance.
-2. When Compose finishes, navigate to [apm-tutorial](http://localhost:5601/app/kibana#/home/tutorial/apm]. Complete steps 4-6 to configure your application to collect and report APM data. More [details](https://www.elastic.co/guide/en/apm/get-started/current/quick-start-overview.html).
+2. When Compose finishes, navigate to [apm-tutorial](http://localhost:5601/app/kibana#/home/tutorial/apm). Complete steps 4-6 to configure your application to collect and report APM data. More [details](https://www.elastic.co/guide/en/apm/get-started/current/quick-start-overview.html).
 3. GET http://localhost:3000 to run a request.
 4. Open http://localhost:9411 to check traces on zipkin.
 

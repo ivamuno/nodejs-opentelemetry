@@ -6,7 +6,8 @@
 1. `npm i -g @nestjs/cli`
 2. Run `npm i` within **nodejs-opentelemetry-master** and **nodejs-opentelemetry-slave**.
 3. `docker network create payvision`
-4. Run `docker-compose up`.
+4. Check "file sharing" is enabled in docker. "Settings" -> "Resources" -> "File Sharing" -> Add "C:\".
+5. Run `docker-compose up`.
    It starts the following components:
    * **nodejs-opentelemetry-master:** Entry point (GET http://localhost:3000)
    * **nodejs-opentelemetry-slave:** Intermediary api.

@@ -2,7 +2,7 @@
 
 ## Steps
 
-0. install node v12.
+0. install [node](https://nodejs.org/en/download/current/).
 1. `npm i -g @nestjs/cli`
 2. Run `npm i` within **nodejs-opentelemetry-master** and **nodejs-opentelemetry-slave**.
 3. `docker network create payvision`

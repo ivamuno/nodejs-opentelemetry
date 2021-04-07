@@ -1,15 +1,13 @@
 receivers:
   otlp:
     protocols:
+      grpc:
       http:
         cors_allowed_origins:
           - http://*
           - https://*
 
 exporters:
-  elastic:
-    apm_server_url: "http://apm-server:8200"
-    secret_token: ""
   zipkin:
     endpoint: "http://zipkin:9411/api/v2/spans"
   jaeger:
@@ -25,7 +23,6 @@ service:
       receivers:
         - otlp
       exporters:
-        - elastic
         - zipkin
         - jaeger
       processors:

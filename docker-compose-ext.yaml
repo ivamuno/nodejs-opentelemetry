@@ -1,0 +1,62 @@
+version: '3'
+services:
+  nodejs-opentelemetry-storage:
+    container_name: nodejs-opentelemetry-storage
+    build:
+      context: ./nodejs-opentelemetry-storage/database
+      dockerfile: Dockerfile
+    image: nodejs-opentelemetry-storage
+    env_file:
+      - ./nodejs-opentelemetry-storage/database/dev-sql.env
+    ports:
+      - "8044:1433"
+    networks:
+      - custom_network
+
+  nodejs-opentelemetry-storage-upgrader:
+    container_name: nodejs-opentelemetry-storage-upgrader
+    build:
+      context: ./nodejs-opentelemetry-storage/upgrader
+      dockerfile: Dockerfile
+    image: nodejs-opentelemetry-storage-upgrader
+    depends_on:
+      - nodejs-opentelemetry-storage
+    env_file:
+      - ./nodejs-opentelemetry-storage/upgrader/dev-database.env
+    environment:
+      - PORT=1433
+    networks:
+      - custom_network
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    ports:
+      - 16686:16686
+      - 14268
+      - 14250
+    networks:
+      - custom_network
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    command: ["--config=/conf/collector-config.yaml", "--log-level=DEBUG"]
+    volumes:
+      - ./collector-config.yaml:/conf/collector-config.yaml
+    ports:
+      - 55681:55681 # Http receiver
+    tty: true
+    networks:
+      - custom_network
+    depends_on:
+      - jaeger
+
+volumes:
+  esdata:
+    driver: local
+
+networks:
+  custom_network:
+    external:
+      name: payvision

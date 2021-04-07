@@ -1,19 +1,18 @@
 # Use starter image
-FROM node:argon
+FROM node:12-alpine
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /webCode/
 
 # Install app dependencies
-COPY package.json /usr/src/app/
+COPY package.json .
 RUN npm install
 
-# Bundle app source
-COPY . /usr/src/app
+WORKDIR /usr/src/app
 
-# Expose port
-EXPOSE 8080
+COPY . /usr/src/app/
+RUN cp -a /webCode/node_modules /usr/src/app/
 
-# Default command to run
-CMD ["npm", "start"]
+EXPOSE 8090
+
+CMD npm run start

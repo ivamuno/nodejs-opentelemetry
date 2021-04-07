@@ -30,10 +30,15 @@ export class TracerProvider {
             enabled: true,
           },
           http: {
+            enabled: true,
             ignoreOutgoingUrls: [
               (url: string) => url.includes('apm')
             ],
-          }
+          },
+          typeorm: {
+            enabled: true,
+            path: 'opentelemetry-plugin-typeorm',
+          },
         },
       }]
     });

@@ -8,8 +8,6 @@ receivers:
           - https://*
 
 exporters:
-  zipkin:
-    endpoint: "http://zipkin:9411/api/v2/spans"
   jaeger:
     endpoint: "jaeger:14250"
     insecure: true
@@ -23,7 +21,6 @@ service:
       receivers:
         - otlp
       exporters:
-        - zipkin
         - jaeger
       processors:
         - batch

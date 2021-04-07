@@ -27,7 +27,10 @@ registerInstrumentations({
 });
 
 provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
-provider.addSpanProcessor(new SimpleSpanProcessor(new CollectorTraceExporter()));
+provider.addSpanProcessor(new SimpleSpanProcessor(new CollectorTraceExporter({
+  serviceName: 'nodejs-opentelemetry-web-fetch',
+  url: 'http://localhost:55681/v1/traces'
+})));
 provider.register({
   contextManager: new ZoneContextManager(),
   propagator: new B3Propagator(),
@@ -45,7 +48,7 @@ const getData = (url) => fetch(url, {
 
 // example of keeping track of context between async operations
 const prepareClickEvent = () => {
-  const url = 'https://httpbin.org/get';
+  const url = 'http://localhost:3000';
 
   const element = document.getElementById('button1');
 

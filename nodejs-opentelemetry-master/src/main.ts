@@ -18,7 +18,7 @@ async function bootstrap() {
   diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  //app.use(logger);
+  app.enableCors()
 
   await app.listen(3000);
 }

@@ -16,6 +16,18 @@ services:
     networks:
       - custom_network
 
+  nodejs-opentelemetry-web:
+    container_name: nodejs-opentelemetry-web
+    build:
+      context: ./nodejs-opentelemetry-web
+      dockerfile: Dockerfile
+    image: nodejs-opentelemetry-web
+    ports:
+      - 8080:8080
+    tty: true
+    networks:
+      - custom_network
+
   nodejs-opentelemetry-slave:
     container_name: nodejs-opentelemetry-slave
     build:
